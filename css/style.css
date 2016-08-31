@@ -213,6 +213,10 @@ body{
         outline: none;
     }
 
+    .sinpad{
+        padding: 0px;
+    }
+
 
   /* HOSHI - ESTILO PARA INPUTS DE TEXTO */
     .input--hoshi {
