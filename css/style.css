@@ -217,6 +217,14 @@ body{
         padding: 0px;
     }
 
+    .errorpresupuestar {
+        color: #4accff;
+        margin-bottom: 15px;
+        font-family: 'Oswald-Light';
+        font-size: 18px;
+        font-weight: 100;
+        display: none;
+    }
 
   /* HOSHI - ESTILO PARA INPUTS DE TEXTO */
     .input--hoshi {
