@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Presupuesto</title>
-
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
-
+    
+   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css" media="screen" />
+   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+    
     <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/bootstrap-datepicker.min.css" type="text/css" media="screen" />
-
+        
     <link rel="stylesheet" href="css/jquery.timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/jquery.timepicker.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-
+    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-
+    
 </head>
-
+    
 <body>
     <div class="container presuciudad">
 
         <!-- 2 PESTAÑAS (PRESUPUESTAR Y ACUERDOS COMERCIALES) -->
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 sinpad">
             <div class="col-xs-6 presuder">
-                PRESUPUESTAR
+            PRESUPUESTAR
             </div>
             <div class="col-xs-6 presizq">
-                <span>ACUERDOS COMERCIALES</span><br> (Cuentas Corrientes, Grandes Cuentas)
+            <span>ACUERDOS COMERCIALES</span><br>
+            (Cuentas Corrientes, Grandes Cuentas)
             </div>
         </div>
         <!-- FIN DE 2 PESTAÑAS (PRESUPUESTAR Y ACUERDOS COMERCIALES) -->
@@ -41,29 +42,25 @@
                 <!-- PRIMERA INSTANCIA DEL FORMULARIO -->
                 <div class="form-section-2">
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="titupresu">Tipo de servicio</div>
-                        <div class="tipser"></div>
-                        <a href="#">
-                            <div class="servipresudes">POR DESTINO</div>
-                        </a>
-                        <a href="#">
-                            <div class="servipresuhor">POR HORA</div>
-                        </a>
+                    <div class="titupresu">Tipo de servicio</div> 
+                    <div class="tipser"></div>
+                                    <a href="#" onclick="mostrarDestino()"><div class="servipresudes">POR DESTINO</div></a>
+                                    <a href="#" onclick="mostrarHora()"><div class="servipresuhor">POR HORA</div></a>
                     </div>
 
                     <div class="col-xs-12 separadorformu">
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <span class="input--hoshi">
+                             <span class="input--hoshi">
                                 <input class="input__field input__field--hoshi" type="text" id="origen" name="origen" required placeholder=""/>
                                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="origen">
                                   <span class="input__label-content input__label-content--hoshi">¿Desde d&#243;nde?</span>
-                            </label>
-                            </span>
+                                 </label>
+                              </span>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="col-md-12 selehor">
-                                <select class="dura vehicleQty selip" id="horas" name="destino">
+                           <div class="col-md-12 selehor">
+                                  <select class="dura vehicleQty selip" id="horas" name="destino">
                                         <option selected disabled value="0">Duraci&#243;n</option>
                                         <option value="1">1 Hora</option>
                                         <option value="2">2 Horas</option>
@@ -89,13 +86,13 @@
                                         <option value="22">22 Horas</option>
                                         <option value="23">23 Horas</option>
                                     </select>
-                            </div>
-                            <span class="input--hoshi seledes">
+                               </div>
+                             <span class="input--hoshi seledes">
                                   <input class="input__field input__field--hoshi" type="text" id="destino" name="destino" required placeholder=""/>
                                   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="destino">
                                   <span class="input__label-content input__label-content--hoshi">¿A d&#243;nde?</span>
-                            </label>
-                            </span>
+                                  </label>
+                              </span>
                         </div>
                     </div>
 
@@ -109,7 +106,7 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-6 ocheinpuuno tipmed">
-                            <select id="selectChange" class="selip" required>
+                            <select id="selectChange" onchange="pagoOnChange(this)" class="selip" required>
                                 <option selected="" disabled="">Tipo y Cantidad de Vehiculo</option>
                                 <option value="option1">3-5 PAX (Autos, SUVs, MiniVans)</option>
                                 <option value="option2">10-22 PAX (Vans, MiniCoach)</option>
@@ -131,7 +128,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">Sedan Estandar</p>
                                             <p class="description">3 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 2 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Standard Sedan (3 PAX - 2 Baggage)" name="servicio[]" required="" data-parsley-mincheck="1">
+                                            <input class="radi" type="checkbox" id="standard" value="Standard Sedan (3 PAX - 2 Baggage)" name="servicio[]"  required="" data-parsley-mincheck="1">
                                             <select class="vehicleQty" name="cant-std">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -151,7 +148,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">Sedan Ejecutivo</p>
                                             <p class="description">3 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 2 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Executive Sedan (3 PAX - 2 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Executive Sedan (3 PAX - 2 Baggage)" name="servicio[]"> 
                                             <select class="vehicleQty" name="cant-exe">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -171,7 +168,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">Sedan de Lujo</p>
                                             <p class="description">3 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 2 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Luxury Sedan (3 PAX - 2 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Luxury Sedan (3 PAX - 2 Baggage)" name="servicio[]"> 
                                             <select class="vehicleQty" name="cant-vip">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -191,7 +188,7 @@
                                         <div class="car-details">
                                             <p class="serv-name" style=" font-size: 11px; ">Mercedes Benz Clase E</p>
                                             <p class="description">3 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 2 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Mercedes Benz E Class (3 PAX - 2 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Mercedes Benz E Class (3 PAX - 2 Baggage)" name="servicio[]"> 
                                             <select class="vehicleQty" name="cant-vip">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -211,7 +208,7 @@
                                         <div class="car-details">
                                             <p class="serv-name" style=" font-size: 11px; ">Mercedes Benz Clase S</p>
                                             <p class="description">3 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 2 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Mercedes Benz S Class (3 PAX - 2 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Mercedes Benz S Class (3 PAX - 2 Baggage)" name="servicio[]"> 
                                             <select class="vehicleQty" name="cant-vip">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -231,7 +228,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">SUV Estandar</p>
                                             <p class="description">5 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 4 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Standard SUV (5 PAX - 4 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Standard SUV (5 PAX - 4 Baggage)" name="servicio[]"> 
                                             <select class="vehicleQty" name="cant-suv">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -252,7 +249,7 @@
                                             <div class="car-details">
                                                 <p class="serv-name">SUV Ejecutiva</p>
                                                 <p class="description">5 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 5 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                                <input class="radi" type="checkbox" id="standard" value="Executive SUV (5 PAX - 5 Baggage)" name="servicio[]" required="" data-parsley-mincheck="1">
+                                                <input class="radi" type="checkbox" id="standard" value="Executive SUV (5 PAX - 5 Baggage)" name="servicio[]"  required="" data-parsley-mincheck="1">
                                                 <select class="vehicleQty" name="cant-std">
                                                     <option selected="">Cantidad de Vehiculos</option>
                                                     <option value="1">1 Vehiculo</option>
@@ -272,7 +269,7 @@
                                             <div class="car-details">
                                                 <p class="serv-name" style=" font-size: 14px; ">Mini Van Estandar</p>
                                                 <p class="description">5 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 5 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                                <input class="radi" type="checkbox" id="standard" value="Standard MiniVan (5 PAX - 5 Baggage)" name="servicio[]">
+                                                <input class="radi" type="checkbox" id="standard" value="Standard MiniVan (5 PAX - 5 Baggage)" name="servicio[]"> 
                                                 <select class="vehicleQty" name="cant-exe">
                                                     <option selected="">Cantidad de Vehiculos</option>
                                                     <option value="1">1 Vehiculo</option>
@@ -292,7 +289,7 @@
                                             <div class="car-details">
                                                 <p class="serv-name">Mini Van de Lujo</p>
                                                 <p class="description">5 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 5 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                                <input class="radi" type="checkbox" id="standard" value="Luxury MiniVan (5 PAX - 5 Baggage)" name="servicio[]">
+                                                <input class="radi" type="checkbox" id="standard" value="Luxury MiniVan (5 PAX - 5 Baggage)" name="servicio[]"> 
                                                 <select class="vehicleQty" name="cant-vip">
                                                     <option selected="">Cantidad de Vehiculos</option>
                                                     <option value="1">1 Vehiculo</option>
@@ -343,7 +340,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">Large Van</p>
                                             <p class="description">14 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 14 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Large Van (14 PAX - 14 Baggage)" name="servicio[]" required="" data-parsley-mincheck="1">
+                                            <input class="radi" type="checkbox" id="standard" value="Large Van (14 PAX - 14 Baggage)" name="servicio[]"  required="" data-parsley-mincheck="1">
                                             <select class="vehicleQty" name="cant-std">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -362,7 +359,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">Mini Coach</p>
                                             <p class="description">22 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 18 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="Mini Coach (22 PAX - 18 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="Mini Coach (22 PAX - 18 Baggage)" name="servicio[]" >
                                             <select class="vehicleQty" name="cant-exe">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -388,7 +385,7 @@
                                     <div class="car-details">
                                         <p class="serv-name">BUS (45pax)</p>
                                         <p class="description">45 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 45 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                        <input class="radi" type="checkbox" id="standard" value="BUS (45 PAX - 45 Baggage)" name="servicio[]">
+                                        <input class="radi" type="checkbox" id="standard" value="BUS (45 PAX - 45 Baggage)" name="servicio[]" >
                                         <select class="vehicleQty" name="cant-suv">
                                             <option selected="">Cantidad de Vehiculos</option>
                                             <option value="1">1 Vehiculo</option>
@@ -409,7 +406,7 @@
                                         <div class="car-details">
                                             <p class="serv-name">BUS (50pax)</p>
                                             <p class="description">50 <img src="https://www.dottransfers.com/presu3/img/pax-icon.jpg" alt=""> | 50 <img src="https://www.dottransfers.com/presu3/img/luggage-icon.jpg" alt=""></p>
-                                            <input class="radi" type="checkbox" id="standard" value="BUS (50 PAX - 50 Baggage)" name="servicio[]">
+                                            <input class="radi" type="checkbox" id="standard" value="BUS (50 PAX - 50 Baggage)" name="servicio[]" >
                                             <select class="vehicleQty" name="cant-van">
                                                 <option selected="">Cantidad de Vehiculos</option>
                                                 <option value="1">1 Vehiculo</option>
@@ -489,15 +486,15 @@
                             <!-- FIN LIMOS -->
 
                         </div>
-                        <!-- FIN GALERIA DE VEHICULOS -->
+                        <!-- FIN GALERIA DE VEHICULOS --> 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 derforu">
                             <a href="#DotPresupuestar">
-                                <button type="button" class="next btn confi">CONFIRMAR</button>
+                                <button type="button" class="next btn confi" >CONFIRMAR</button>
                             </a>
                         </div>
 
-                    </div>
+                    </div> 
                 </div>
                 <!-- FIN DE LA PRIMERA INSTANCIA DEL FORMULARIO -->
 
@@ -505,37 +502,37 @@
                 <!-- SEGUNDA INSTANCIA DEL FORMULARIO -->
                 <div class="form-section-2">
                     <div class="col-md-12">
-                        <div class="col-md-3">
-                            <span class="input--hoshi">
+                         <div class="col-md-3">
+                              <span class="input--hoshi">
                                   <input class="input__field input__field--hoshi" type="text" id="nombre" name="nombre" maxlength="20" required/>
                                   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="nombre">
                                     <span class="input__label-content input__label-content--hoshi">Nombre</span>
-                            </label>
-                            </span>
-                        </div>
+                                  </label>
+                              </span>
+                           </div>
 
-                        <div class="col-md-3">
-                            <span class="input--hoshi">
+                            <div class="col-md-3">
+                              <span class="input--hoshi">
                                   <input class="input__field input__field--hoshi" type="text" id="apellido" name="apellido" maxlength="20" required/>
                                   <label class="input__label input__label--hoshi input__label--hoshi-color-1" id="apellido" name="apellido">
                                       <span class="input__label-content input__label-content--hoshi">Apellido</span>
-                            </label>
-                            </span>
-                        </div>
+                                  </label>
+                              </span>
+                           </div>
 
-                        <div class="col-md-6">
-                            <span class="input--hoshi">
+                           <div class="col-md-6">
+                              <span class="input--hoshi">
                                   <input class="input__field input__field--hoshi" type="email" id="email" name="email" required/>
                                   <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="email">
                                     <span class="input__label-content input__label-content--hoshi">Direcci&#243;n de E-mail</span>
-                            </label>
-                            </span>
-                        </div>
+                                  </label>
+                              </span>
+                           </div>
 
-                        <div class="col-md-12 derforu">
-                            <button type="button" class="previous btnu"><</button>
-                            <button type="button" class="next btn confi" id="enviausuario">CONFIRMAR 2</button>
-                        </div>
+                           <div class="col-md-12 derforu">
+                             <button type="button" class="previous btnu"><</button>
+                             <button type="button" class="next btn confi" id="enviausuario">CONFIRMAR 2</button>
+                           </div> 
                     </div>
                 </div>
                 <!-- FIN DE LA SEGUNDA INSTANCIA DEL FORMULARIO -->
@@ -545,27 +542,28 @@
                 <!-- TERCERA INSTANCIA DEL FORMULARIO -->
                 <div class="form-section-2">
                     <input id="nombreusuarioa" readonly class="mx" value="">
-                    <div class="col-md-12 mx1">
-                        Al contratar servicios con frecuencia, en DotTransfers brindamos beneficios y acuerdos comerciales a la medida de cada cliente.<br>
-                    </div>
-                    <p class="mx2" style="margin-top: 62px !important; margin-bottom:15px  !important;"><br> ¿Cual es la cantidad de Transfers que contrata habitualmente?
-                    </p>
+                     <div class="col-md-12 mx1">
+                         Al contratar servicios con frecuencia, en DotTransfers brindamos beneficios y acuerdos comerciales a la medida de cada cliente.<br>
+                     </div>
+                     <p class="mx2" style="margin-top: 62px !important; margin-bottom:15px  !important;"><br>
+                        ¿Cual es la cantidad de Transfers que contrata habitualmente?
+                     </p>
 
-                    <div class="col-md-12 selecanti" id="qwe">
+                     <div class="col-md-12 selecanti" id="qwe">
                         <input type="radio" id="test" name="viajespormes" value="Unica vez">
-                        <label for="test">Contrataci&#243;n por<br>&#250;nica vez</label>
+                            <label for="test">Contrataci&#243;n por<br>&#250;nica vez</label>
                         <input type="radio" id="test1" name="viajespormes" value="1 a 5 por mes">
-                        <label for="test1">1 a 5 viajes<br>por mes</label>
+                            <label for="test1">1 a 5 viajes<br>por mes</label>
                         <input type="radio" id="test2" name="viajespormes" value="6 a 30 por mes">
-                        <label for="test2">6 a 30 viajes<br>por mes</label>
+                            <label for="test2">6 a 30 viajes<br>por mes</label>
                         <input type="radio" id="test3" name="viajespormes" value="Mas de 30 por mes">
-                        <label for="test3">Más de 30 viajes<br>por mes</label>
-                    </div>
+                            <label for="test3">Más de 30 viajes<br>por mes</label>
+                     </div>
 
                     <div class="col-md-12 derforu" style="padding-top: 1px !important;">
                         <button type="button" class="previous btnu"><</button>
                         <button type="button" class="next btn confi">CONFIRMAR 3</button>
-                    </div>
+                    </div> 
                 </div>
 
                 <!-- FIN DE LA TERCERA INSTANCIA DEL FORMULARIO -->
@@ -581,28 +579,27 @@
 
                     <div class="col-md-12 selecanti">
                         <input type="radio" id="test4" name="acuerdocomercial" value="Particular">
-                        <label for="test4">Particular</label>
+                            <label for="test4">Particular</label>
                         <input type="radio" id="test5" name="acuerdocomercial" value="Corporativo">
-                        <label for="test5">Corpotaivo</label>
+                            <label for="test5">Corpotaivo</label>
                         <input type="radio" id="test6" name="acuerdocomercial" value="Agencia de Viajes">
-                        <label for="test6">Agencia de Viajes</label>
+                            <label for="test6">Agencia de Viajes</label>
                         <input type="radio" id="test7" name="acuerdocomercial" value="Otros">
-                        <label for="test7">Otro</label>
+                            <label for="test7">Otro</label>
                     </div>
 
                     <div class="col-md-12 derforu">
-                        <button type="button" class="previous btnu"><</button>
-                        <button type="submit" class="btn confi envi">CONOCE LOS BENEFICIOS  <span class="glyphicon glyphicon-send"></span></button>
+                    <button type="button" class="previous btnu"><</button>
+                    <button type="submit" class="btn confi envi">CONOCE LOS BENEFICIOS  <span class="glyphicon glyphicon-send"></span></button>
                     </div>
                 </div>
-                <!-- FIN DE LA CUARTA INSTANCIA DEL FORMULARIO -->
+            <!-- FIN DE LA CUARTA INSTANCIA DEL FORMULARIO -->
 
             </form>
 
         </div>
 
     </div>
-<<<<<<< HEAD
         
    
      <!-- scripts -->
@@ -626,31 +623,6 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
 
                 
-=======
-
-
-    <!-- scripts -->
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-    <script src="js/presupuestar_es_ciudades.js" type="text/javascript"></script>
-
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" type="text/javascript"></script>
-
-    <script src="js/parsley.js" type="text/javascript"></script>
-    <script src="js/formu-nuevo-form.js" type="text/javascript"></script>
-    <script src="js/conect.js" type="text/javascript"></script>
-    <script src="js/jquery.geocomplete.js" type="text/javascript"></script>
-
-    <script src="js/jquery.timepicker.js" type="text/javascript"></script>
-    <script src="js/jquery.timepicker.min.js" type="text/javascript"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
-
-
->>>>>>> origin/master
 </body>
-
+            
 </html>
