@@ -1,4 +1,5 @@
 // Hora y fecha 
+<<<<<<< HEAD
 $(function() {
     $('#hora').timepicker();
 });
@@ -228,131 +229,155 @@ function pagoOnChange(sel) {
             $("#option4").fadeOut(250);
 
         }
+=======
+$(document).ready(function () {
+  // Inicia los controles.
+  $('#fecha').datepicker();
+  $('#hora').timepicker();
+
+  // Funciones del parsley para que avanze de instancias
+  $('.previous').on('click', function () {
+    var idx = curIndex();
+    navigateTo(idx - 1);
+  });
+
+  $('.next').on('click', function () {
+    var $demoForm = $('.demo-form-2');
+    var parsley = $demoForm.parsley();
+    var idx = curIndex();
+    var data = {
+      group: 'block-' + String(idx)
+    };
+
+    if (parsley.validate(data)) {
+      navigateTo(idx + 1);
+    }
+  });
+
+  // Cambio de cantidad de vehiculos.
+  $('.vehicleQty').on('change', function () {
+    var $this = $(this);
+    if ($this.val() != i18n.QuantityText) {
+      $this.prev().attr('checked', 'checked');
+    }else {
+      $this.prev().removeAttr('checked');
+    }
+  });
+
+  // Al seleccionar un vehiculo activa el primer valor de la cantidad de vehiculos. 
+  // Y si se seleciono una cantidad de vehiculos marca automaticamente el imput del vehiculo.
+  // Selección de un servicio.
+  $('.servicio').on('click', function (e) {
+    if (e.target.className == 'radi' || e.target.nodeName == 'SELECT' || e.target.nodeName == 'OPTION') return // prevent to check/uncheck when click on inner controls
+    var $this = $(this);
+    var $radi =  $this.find('.radi');
+    var $select = $this.find('select');
+    var checked = $radi.prop('checked') || false;
+
+    if (checked) {
+      $radi.prop('checked', false);
+      $select.val(i18n.QuantityText);
+    } else {
+      $radi.prop('checked', true);
+      if ($select.val() == i18n.QuantityText) {
+        $select.val('1');
+      }
+    }
+  }).find(':checkbox').on('click', function () {
+    var $this = $(this);
+    var $combo = $this.next();
+    if ($this.is(':checked')) {
+      if ($combo.val() == i18n.QuantityText) {
+        $combo.val('1');
+      }
+    } else {
+      $combo.val(i18n.QuantityText);
+    }
+  });
+  
+  // Para la galeria de Autos
+  $('#selectChange').on('change', function () {
+    $('#option1, #option2, #option3, #option4, #option5').fadeOut(250);
+    $('#' + $(this).val()).stop().fadeIn(1500);
+  });
+
+  // Efecto para los controles input.
+  $('input.input__field').each(function () {
+    var $this = $(this);
+    if ($.trim($this.val()) !== '') {
+      $this.parent().addClass('input--filled');
+>>>>>>> origin/master
     }
 
-
-
-
-// al seleccionar un vehiculo activa el primer valor de la cantidad de vehiculos. Y si se seleciono una cantidad de vehiculos marca automaticamente el imput del vehiculo.
-
-    $('.servicio').find(':checkbox').click(function () {
-        var $this = $(this),
-            $combo = $this.next();
-        if ($this.is(":checked")) {
-            if ($combo.val() == i18n.QuantityText) {
-                $combo.val("1");
-            }
-        } else {
-            $combo.val(i18n.QuantityText);
-        }
+    $this.on('focus', function () {
+      var $this = $(this);
+      $this.parent().addClass('input--filled');
+    }).on('blur', function () {
+      var $this = $(this);
+      if ($.trim($this.val()) === '') {
+        $this.parent().removeClass('input--filled');
+      }
     });
+  });
 
-    $('.vehicleQty').change(function () {
-        if ($(this).val() != i18n.QuantityText)
-            $(this).prev().attr("checked", "checked");
-        else
-            $(this).prev().removeAttr("checked");
-    });
+  // autocomplete de direcciones.
+  $('#origen').geocomplete();
 
-    $('.servicio').click(function (e) {
-        if (e.target.className == "radi" || e.target.nodeName == 'SELECT' || e.target.nodeName == 'OPTION') return; // prevent to check/uncheck when click on inner controls
-        var $this = $(this);
-        var checked = $('.radi', $this).prop('checked') || false;
+  $('#destino').geocomplete();
 
-        if (checked) {
-            $('.radi', $this).prop('checked', false);
-            $('select', $this).val(i18n.QuantityText);
-        } else {
-            $('.radi', $this).prop('checked', true);
-            if ($('select', $this).val() == i18n.QuantityText) {
-                $('select', $this).val("1");
-            }
-        }
-    });
+  // para mostrar el select de servicio por hora y ocultarlo si se seleciona por destino
+  $('a div.servipresudes').on('click', mostrarDestino);
+  $('a div.servipresuhor').on('click', mostrarHora);
 
-   
+  $('#enviausuario').on('click', function () {
+    // Envia el nombre del usuario a la instacia 3 y 4 del formulario.
+    var nombre = $('#nombre').val();
+    $('#nombreusuarioa').val(nombre);
+    $('#nombreusuariob').val(nombre);
+  })
 
-// para hacer el los efectos en los input
-$(document).ready(function(){
-    $('input.input__field').each(function() { 
-        var $this = $(this);
-        if($.trim($this.val()) !== '') {
-            $this.parent().addClass('input--filled');
-        }
-
-        $this.on('focus', function(){
-            var $this = $(this);
-            // $this.data('hasValue', $.trim($this.val()) !== '');
-            $this.parent().addClass('input--filled');
-        }).on('blur', function(){
-            var $this = $(this);
-            if($.trim($this.val()) === '') {
-                $this.parent().removeClass('input--filled');
-            }
-        });
-    });
-});
-
-
-
-// autocomplete de direcciones
-$(function(){
-$("#origen").geocomplete()
- .bind("geocode:result", function(event, result){
-$.log("Result: " + result.formatted_address);
+  $('.form-section-2').each(function (index, section) {
+    $(section).find(':input').attr('data-parsley-group', 'block-' + String(index));
+  })
+  
+  // Inicia la navecación.
+  navigateTo(0);
 })
-});
 
-$(function(){
-$("#destino").geocomplete()
- .bind("geocode:result", function(event, result){
-$.log("Result: " + result.formatted_address);
-})
-});
+function navigateTo (index) {
+  var $sections = $('.form-section-2');
+  $sections.removeClass('current')
+    .eq(index)
+    .addClass('current');
 
-
-
-// para mostrar el select de servicio por hora y ocultarlo si se seleciona por destino
-function mostrarDestino() {
-    $(".selehor").css({"display": "none"});
-    $(".seledes").css({"display": "block"});
-
-    $(".servipresudes").css({"background-color": "#4accff"});
-    $(".servipresudes").css({"color": "#fff"});
-
-    $(".servipresuhor").css({"background-color": "rgba(24,91,117,.3)"});
-    $(".servipresuhor").css({"color": "#b5b4b4"});
+  var $formNavigation = $('.form-navigation-2');
+  $formNavigation.find('.previous').toggle(index > 0);
+  var atTheEnd = index >= $sections.length - 1;
+  $formNavigation.find('.next').toggle(!atTheEnd);
+  $formNavigation.find('[type=submit]').toggle(atTheEnd);
 }
 
-function mostrarHora() {
-    $(".servipresudes").css({"background-color": "rgba(24,91,117,.3)"});
-    $(".servipresudes").css({"color": "#b5b4b4"});
-
-    $(".servipresuhor").css({"background-color": "#4accff"});
-    $(".servipresuhor").css({"color": "#fff"});
-
-    $(".seledes").css({"display": "none"});
-    $(".selehor").css({"display": "block"});
+function curIndex () {
+  var $formSection = $('.form-section-2');
+  return $formSection.index($formSection.filter('.current'));  
 }
 
+/**
+ * mostrarDestino
+ */
+function mostrarDestino () {
+  $('.selehor').hide();
+  $('.seledes').show();
+  $('.servipresudes').css({'background-color': '#4accff', 'color': '#fff'});
+  $('.servipresuhor').css({'background-color': 'rgba(24,91,117,.3)', 'color': '#b5b4b4'});
+}
 
-
-// Enviar el nombre del usuario a la instacia 3 y 4 del formulario
-$(document).ready(function()
-	{
-	$("#enviausuario").click(function () {
-	$("#nombreusuarioa").val($("#nombre").val());
-	});		
-});
-$(document).ready(function()
-	{
-	$("#enviausuario").click(function () {
-	$("#nombreusuariob").val($("#nombre").val());
-	});		
-});
-
-
-
-
-
-
+/**
+ * mostrarHora
+ */
+function mostrarHora () {
+  $('.servipresudes').css({'background-color': 'rgba(24,91,117,.3)', 'color': '#b5b4b4'});
+  $('.servipresuhor').css({'background-color': '#4accff', 'color': '#fff'});
+  $('.seledes').hide();
+  $('.selehor').show();
+}
