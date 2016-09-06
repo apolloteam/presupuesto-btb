@@ -30,15 +30,155 @@ $(function () {
             navigateTo(curIndex() - 1);
           });
           $('.next').click(function() {
-            if ($('.demo-form-2').parsley().validate({group: 'block-' + curIndex()}))
-              navigateTo(curIndex() + 1);
+            var currentStep = curIndex();
+
+            if ($('.demo-form-2').parsley().validate({group: 'block-' + currentStep}))
+            {
+              if (currentStep==1) {
+                 debugger;
+                 postToAPI(
+                    function(result){ // Success Call
+                        navigateTo(currentStep + 1);     
+                    },
+                    function(error){  // Error Call
+                        // TODO: Show Error Message
+                        Alert ('Error on API Call')
+                    }
+                 );
+              } else {
+                 navigateTo(currentStep + 1);  
+              }  
+            }
+             
           });
+
           $sections.each(function(index, section) {
             $(section).find(':input').attr('data-parsley-group', 'block-' + index);
           });
           navigateTo(0);
 });
 
+
+function postToAPI(postSuccess, postError) {
+
+    var requestData = {
+      contact: {
+        firstName: $('#nombre').val(),
+        lastName: $('#apellido').val(),
+        eMail: $('#email').val(),
+        phone: $('#telefono').val(),
+        cellPhone: "",
+        title: "",
+        languageCode: i18n.options.language
+      },
+      services: [],
+      clientType: $('input[name=cliente-categoria]:checked').val()
+    };
+
+    var dtId = '#fecha',
+        $dt = $(dtId),
+        dtValue = $dt.val(),
+        sDate = Date.parseDate(dtValue, i18n.options.dateFormat),
+        sTime = $("#hora").val();
+
+    //var serviceDate = new Date(Date.UTC(sDate.substring(6),parseInt(sDate.substring(3,5))-1,sDate.substring(0,2),sTime.substring(0,2),sTime.substring(3)));
+    // Arma el ISOString. Ej.("2014-8-31T22:00:00.000Z")
+    var serviceDate = sDate.getFullYear()+'-'+(sDate.getMonth() + 1)+'-'+sDate.getDate()+'T'+sTime+':00.000Z';              
+
+
+    // TODO: Hacer for con un servicio por cada cantidad de cada vehiculo
+    var servicios = $("input[name='servicio[]']:checked");
+
+    for (var i = 0, l = servicios.length; i < l; i++) {
+
+        var service = {
+          //scheduleDate: serviceDate.toISOString(),
+          scheduleDate: serviceDate,
+          serviceType: $("#horaschk").is(":checked") ? "TIME" : "PTP",
+          passenger: {
+            firstName: $('#nombre').val(),
+            lastName: $('#apellido').val(),
+            eMail:  $('#email').val(),
+            phone: $('#telefono').val(),
+            cellPhone: "",
+            title: "" //$('#mr').val()
+          },
+          rutePoints: 
+            [
+                {
+                  action: "PU",
+                  order: 0,
+                  location: {
+                    searchText: $("#origen").val(),
+                    name: "[ZONE]" + document.title,
+                    summary: "-",
+                    countryCode: "-",
+                    latitude: "0",
+                    longitude: "0",
+                    category: "search"
+                  }
+                }
+            ],
+          vehicle:{
+                category: servicios[i].value,
+                quantity: parseInt($(servicios[i]).next().val()) // $("input[name='servicio[]']:checked").val()
+            },                
+          passengerCount: $(servicios[i]).prev().children('.qtyPass').html(),
+          luggageCount: $(servicios[i]).prev().children('.qtyBag').html(),
+          comments: $('#mensaje').val() 
+        }
+
+        if (service.serviceType=='PTP') {
+
+            service.rutePoints.push(    
+                {
+                  action: "DO",
+                  order: 1,
+                  location: {
+                    searchText: $("#destino").val(),
+                    name: "-",
+                    summary: "-",
+                    countryCode: "-",
+                    latitude: "0",
+                    longitude: "0",
+                    category: "search"
+                  }
+                }
+            );
+        } else {
+            //service.timeRequired = parseInt(timeStringToFloat($('#horas').val()+":"+$('#minutos').val()));
+            var horas   = parseInt($('#horas').val());
+                //minutos = parseInt($('#minutos').val());                                  
+            // Se calcula el tiempo de servicio en minutos.
+            service.timeRequired = (horas * 60);                    
+        }
+
+        requestData.services.push(service);
+    }
+    
+
+    console.log(requestData); //use the console for debugging, F12 in Chrome, not alerts
+
+
+    //Post to API
+    
+    var requestDataJSON = JSON.stringify(requestData);
+    //var APIurl =  "http://localhost:9200/quote/request"; // (Dev)
+    //var APIurl =  "http://api.dottransfers.sommytech.com.ar/v1/quote/request"; // (Testing)
+    //var APIurl =  "http://api.gototransfers.com/v1/quote/request"; // (Homo)
+    var APIurl =  "http://api.dottransfers.com/v1/quote/request"; // (Live)
+    $.ajax({
+        type: "POST",
+        url: APIurl,
+        contentType: "application/json",
+        data: requestDataJSON,
+        success: postSuccess,
+        error: postError,
+        dataType: 'json',
+        crossDomain: true
+    });
+
+}
 
 
 // Para la galeria de Autos
