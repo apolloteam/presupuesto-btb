@@ -14,7 +14,7 @@ window.Parsley.addValidator('destinohora', function (value, requirement) {
 $(document).ready(function () {
   // Inicia los controles.
   $('#fecha').datepicker();
-  $('#hora').timepicker({ timeFormat: 'H:i' });
+  $('#hora').timepicker({ timeFormat: i18n.options.timeFormat });
 
   // Funciones del parsley para que avanze de instancias
   $('.previous').on('click', function () {
