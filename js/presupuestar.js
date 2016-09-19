@@ -32,14 +32,16 @@ $(document).ready(function () {
     
     if (parsley.validate(data)) {
       if (idx==1) {
-        debugger;
         postToAPI(
           function(result){ // Success Call
-              navigateTo(currentStep + 1);     
+              navigateTo(idx + 1);     
           },
           function(error){  // Error Call
               // TODO: Show Error Message
-              console.log(error)
+              console.log(arguments)
+              var response = JSON.parse(error.responseText);
+              $('#errorMsg').html(response.errorCode)
+              $('#error').fadeIn();
           }
         );
       } else {
@@ -244,8 +246,8 @@ function postToAPI(postSuccess, postError) {
                 category: servicios[i].value,
                 quantity: parseInt($(servicios[i]).next().val()) // $("input[name='servicio[]']:checked").val()
             },                
-          passengerCount: 1, // $(servicios[i]).prev().children('.qtyPass').html(), //TODO: get
-          luggageCount: 1, // $(servicios[i]).prev().children('.qtyBag').html(), //TODO: get
+          passengerCount: $(servicios[i]).prev().children('.passQty').html(), //TODO: get
+          luggageCount:  $(servicios[i]).prev().children('.baggQty').html(), //TODO: get
           comments: '' //$('#mensaje').val() 
         }
 
@@ -287,7 +289,7 @@ function postToAPI(postSuccess, postError) {
     //var APIurl =  "http://localhost:9200/quote/request"; // (Dev)
     //var APIurl =  "http://api.dottransfers.sommytech.com.ar/v1/quote/request"; // (Testing)
     //var APIurl =  "http://api.gototransfers.com/v1/quote/request"; // (Homo)
-    //var APIurl =  "http://api.dottransfers.com/v1/quote/request"; // (Live)
+    //var APIurl =  "https://api.dottransfers.com/v1/quote/request"; // (Live)
     var APIurl =  "https://api.dottransfers.com/v2/quote/request"; // (Live)
     
     $.ajax({
