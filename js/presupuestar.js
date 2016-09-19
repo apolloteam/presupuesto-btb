@@ -13,7 +13,7 @@ window.Parsley.addValidator('destinohora', function (value, requirement) {
 
 $(document).ready(function () {
   // Inicia los controles.
-  $('#fecha').datepicker();
+  $('#fecha').datepicker({language: i18n.options.language});
   $('#hora').timepicker({ timeFormat: i18n.options.timeFormat });
 
   // Funciones del parsley para que avanze de instancias
@@ -40,7 +40,7 @@ $(document).ready(function () {
               // TODO: Show Error Message
               console.log(arguments)
               var response = JSON.parse(error.responseText);
-              $('#errorMsg').html(response.errorCode)
+              $('#errorMsg').html(i18n.messages.quoteRequestError + ' (' + response.errorUniqueId + ')')
               $('#error').fadeIn();
           }
         );
