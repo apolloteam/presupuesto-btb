@@ -494,7 +494,7 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12 derforu">
                             <a href="#DotPresupuestar">
-                                <button type="button" class="next btn confi">CONFIRMAR</button>
+                                <button type="button" class="next btn confi">CONFIRMAR ITINERARIO</button>
                             </a>
                         </div>
 
@@ -543,7 +543,7 @@
 
                         <div class="col-md-12 derforu">
                             <button type="button" class="previous btnu"><</button>
-                            <button type="button" class="next btn confi" id="enviausuario">CONFIRMAR 2</button>
+                            <button type="button" class="next btn confi" id="enviausuario">CONFIRMAR DATOS</button>
                         </div>
                     </div>
                 </div>
@@ -557,12 +557,28 @@
                     <div class="col-md-12 mx1">
                         Al contratar servicios con frecuencia, en DotTransfers brindamos beneficios y acuerdos comerciales a la medida de cada cliente.<br>
                     </div>
+                    
+                     <p class="mx2" style="margin-top: 62px !important; margin-bottom:15px  !important;"><br>
+                        Seleccionar tipo de cliente:
+                    </p>
+                    
+                     <div class="col-md-12 selecanti">
+                        <input type="radio" id="test4" name="acuerdocomercial" value="Particular" required>
+                        <label for="test4">Particular</label>
+                        <input type="radio" id="test5" name="acuerdocomercial" value="Corporativo">
+                        <label for="test5">Corporativo</label>
+                        <input type="radio" id="test6" name="acuerdocomercial" value="Agencia de Viajes">
+                        <label for="test6">Agencia de Viajes</label>
+                        <input type="radio" id="test7" name="acuerdocomercial" value="Otros">
+                        <label for="test7">Otro</label>
+                    </div>
+                    
                      <p class="mx2" style="margin-top: 62px !important; margin-bottom:15px  !important;"><br>
                         ¿Cual es la cantidad de Transfers que contrata habitualmente?
                     </p>
 
                     <div class="col-md-12 selecanti" id="qwe">
-                        <input type="radio" id="test" name="viajespormes" value="Unica vez">
+                        <input type="radio" id="test" name="viajespormes" value="Unica vez" required>
                         <label for="test">Contrataci&#243;n por<br>&#250;nica vez</label>
                         <input type="radio" id="test1" name="viajespormes" value="1 a 5 por mes">
                         <label for="test1">1 a 5 viajes<br>por mes</label>
@@ -572,40 +588,21 @@
                         <label for="test3">Más de 30 viajes<br>por mes</label>
                     </div>
 
-                    <div class="col-md-12 derforu" style="padding-top: 1px !important;">
+                    <div class="col-md-12 derforu">
                         <button type="button" class="previous btnu"><</button>
-                        <button type="button" class="next btn confi">CONFIRMAR 3</button>
+                        <button type="button" class="next btn confi">SOLICITAR PRESUPUESTO  <span class="glyphicon glyphicon-send"></span></button>
                     </div>
+                </div>
+                    
+                <div class="form-section-2">
+                    <input id="nombreusuarioa" readonly class="mx" value="">
+                    <div class="col-md-12 mx1">
+                        Gracias por .....<br>
+                    </div>
+                    
                 </div>
 
                 <!-- FIN DE LA TERCERA INSTANCIA DEL FORMULARIO -->
-
-
-
-                <!-- CUARTA INSTANCIA DEL FORMULARIO -->
-                <div class="form-section-2">
-                    <input id="nombreusuariob" class="mx" readonly value="">
-
-                    <p class="mx2">Seleccione tipo de acuerdo comercial
-                    </p>
-
-                    <div class="col-md-12 selecanti">
-                        <input type="radio" id="test4" name="acuerdocomercial" value="Particular">
-                        <label for="test4">Particular</label>
-                        <input type="radio" id="test5" name="acuerdocomercial" value="Corporativo">
-                        <label for="test5">Corpotaivo</label>
-                        <input type="radio" id="test6" name="acuerdocomercial" value="Agencia de Viajes">
-                        <label for="test6">Agencia de Viajes</label>
-                        <input type="radio" id="test7" name="acuerdocomercial" value="Otros">
-                        <label for="test7">Otro</label>
-                    </div>
-
-                    <div class="col-md-12 derforu">
-                        <button type="button" class="previous btnu"><</button>
-                        <button type="submit" class="btn confi envi">CONOCE LOS BENEFICIOS  <span class="glyphicon glyphicon-send"></span></button>
-                    </div>
-                </div>
-                <!-- FIN DE LA CUARTA INSTANCIA DEL FORMULARIO -->
 
             </form>
 
