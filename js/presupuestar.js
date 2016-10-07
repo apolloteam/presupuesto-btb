@@ -52,7 +52,7 @@ $(document).ready(function () {
     };
 
     if (parsley.validate(data)) {
-      if (idx == 1) {
+      if (idx == 2) {
         postToAPI(
           function (result) { // Success Call
             navigateTo(idx + 1);
@@ -226,7 +226,7 @@ function postToAPI(postSuccess, postError) {
       languageCode: i18n.options.language
     },
     services: [],
-    clientType: 'Agency'
+    clientType: $('input[name=acuerdocomercial]:checked').val()
   };
 
   var dtId = '#fecha',
@@ -277,7 +277,7 @@ function postToAPI(postSuccess, postError) {
       },
       passengerCount: $servInfo.children('.passQty').html(), 
       luggageCount: $servInfo.children('.baggQty').html(), 
-      comments: ''  
+      comments: $('input[name=viajespormes]:checked').val()  
     }
 
     if (service.serviceType == 'PTP') {
