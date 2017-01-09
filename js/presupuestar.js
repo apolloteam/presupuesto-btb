@@ -179,6 +179,10 @@ function curIndex() {
   return $formSection.index($formSection.filter('.current'));
 }
 
+function getLangfromUrl() {
+  return document.location.href.indexOf('\/es\/')!=-1 ? 'es' :  (document.location.href.indexOf('\/pt\/')!=-1 ? 'pt' : 'en'); 
+}
+
 /**
  * mostrarDestino
  */
@@ -253,7 +257,8 @@ function postToAPI(postSuccess, postError) {
         eMail: email,
         phone: phone,
         cellPhone: '',
-        title: '' 
+        title: '',
+        languageCode: getLangfromUrl() 
       },
       rutePoints:
       [
